@@ -63,8 +63,6 @@ class TestAbs(unittest.TestCase):
         driver.quit()
 
     # 2ой тест: задача 1.6 шаг 2
-
-
     def test_page2(self):
         hostname = "10.3.1.2"
         port = "8080"
