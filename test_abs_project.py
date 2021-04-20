@@ -56,8 +56,7 @@ class TestAbs(unittest.TestCase):
         # записываем в переменную welcome_text текст из элемента welcome_text_elt
         welcome_text = welcome_text_elt.text
         # с помощью assert проверяем, что ожидаемый текст совпадает с текстом на странице сайта
-        assert "Congratulations! You have successfully registered!" == welcome_text
-
+        self.assertEqual(welcome_text, "Congratulations! You have successfully registered!", "Test is ok")
         time.sleep(1)
         # закрываем браузер после всех манипуляций
         driver.quit()
@@ -104,7 +103,7 @@ class TestAbs(unittest.TestCase):
         # записываем в переменную welcome_text текст из элемента welcome_text_elt
         welcome_text = welcome_text_elt.text
         # с помощью assert проверяем, что ожидаемый текст совпадает с текстом на странице сайта
-        assert "Congratulations! You have successfully registered!" == welcome_text
+        self.assertEqual(welcome_text, "Congratulations! You have successfully registered!", "Test is ok")
 
         time.sleep(1)
         # закрываем браузер после всех манипуляций
