@@ -35,18 +35,20 @@ class TestAbs(unittest.TestCase):
         Thread(target=open_a_page, args=(driver, "https://demoqa.com/text-box")).start()
         Thread(target=enter_proxy_auth, args=(proxy_username, proxy_password)).start()
 
-        driver.implicitly_wait(5)
-        fullNameValue = "Andrew"
-        fullName = driver.find_element_by_xpath("//input[@id='userName']")
-        fullName.send_keys(fullNameValue)
+        try:
+            driver.implicitly_wait(5)
+            fullNameValue = "Andrew"
+            fullName = driver.find_element_by_xpath("//input[@id='userName']")
+            fullName.send_keys(fullNameValue)
 
-        driver.find_element_by_xpath("//button[@id='submit']").click()
+            driver.find_element_by_xpath("//button[@id='submit']").click()
+            fullNameResult = driver.find_element_by_xpath("//p[@id='name']").text
+            print(fullNameResult)
 
-        fullNameResult = driver.find_element_by_xpath("//p[@id='name']").text
-        print(fullNameResult)
-        time.sleep(1)
-        # закрываем браузер после всех манипуляций
-        driver.quit()
+        finally:
+            time.sleep(1)
+            # закрываем браузер после всех манипуляций
+            driver.quit()
 
     def test_doubleClick(self):
         hostname = "10.3.1.2"
@@ -71,16 +73,17 @@ class TestAbs(unittest.TestCase):
         Thread(target=open_a_page, args=(driver, "https://demoqa.com/buttons")).start()
         Thread(target=enter_proxy_auth, args=(proxy_username, proxy_password)).start()
 
-        driver.implicitly_wait(5)
+        try:
+            driver.implicitly_wait(5)
+            waitResult = "You have done a double click"
+            doubleButton = driver.find_element_by_xpath("//button[@id='doubleClickBtn']")
+            webdriver.ActionChains(driver).double_click(doubleButton).perform()
+            doubleResult = driver.find_element_by_xpath("//p[@id='doubleClickMessage']").text
 
-        waitResult = "You have done a double click"
-        doubleButton = driver.find_element_by_xpath("//button[@id='doubleClickBtn']")
-        webdriver.ActionChains(driver).double_click(doubleButton).perform()
-        doubleResult = driver.find_element_by_xpath("//p[@id='doubleClickMessage']").text
-
-        time.sleep(1)
-        # закрываем браузер после всех манипуляций
-        driver.quit()
+        finally:
+            time.sleep(1)
+            # закрываем браузер после всех манипуляций
+            driver.quit()
 
 if __name__ == "__main__":
     unittest.main()
