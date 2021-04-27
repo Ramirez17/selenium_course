@@ -1,0 +1,5 @@
+s = int(input())
+a = int(s/3)
+p = s = int(a/2)
+k = int((p+s)*2)
+print(p, k, s)
