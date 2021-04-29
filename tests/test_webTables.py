@@ -37,12 +37,38 @@ class TestAbs(unittest.TestCase):
         Thread(target=enter_proxy_auth, args=(proxy_username, proxy_password)).start()
 
         try:
-            driver.implicitly_wait(5)
-            driver.find_element_by_xpath("//button[@id='addNewRecordButton']").click()
+            # Задаем значения вводимых строк
+            firstName = 'Andrew'
+            lastName = 'Ivakha'
+            userEmail = 'test@test.ru'
+            age = '34'
+            Salary = '10000000'
+            department = 'US'
 
+            # Ожидаем появления элементов
+            driver.implicitly_wait(5)
+
+            # Заполняем поля
+            driver.find_element_by_xpath("//button[@id='addNewRecordButton']").click()
+            driver.find_element_by_xpath("//input[@id='firstName']").send_keys("firstName")
+            driver.find_element_by_xpath("//input[@id='lastName']").send_keys(lastName)
+            driver.find_element_by_xpath("//input[@id='userEmail']").send_keys(userEmail)
+            driver.find_element_by_xpath("//input[@id='age']").send_keys(age)
+            driver.find_element_by_xpath("//input[@id='salary']").send_keys(Salary)
+            driver.find_element_by_xpath("//input[@id='department']").send_keys(department)
+            driver.find_element_by_xpath("//button[@id='submit']").click()
+            time.sleep(1)
+
+            # Находим ячейку с именем в добавленной нами строке
+            firstName_print = driver.find_element_by_xpath(
+                "//div[@class='rt-tbody']/div[@class='rt-tr-group'][4]//div[@class='rt-td'][1]").text
+
+            # Проверяем, что строка присутствует
+            assert firstName_print == firstName, "Отсутствует добавленная строка"
+            if firstName_print == firstName:
+                print("Строка добавлена")
         finally:
             time.sleep(1)
-            # закрываем браузер после всех манипуляций
             driver.quit()
 
 
