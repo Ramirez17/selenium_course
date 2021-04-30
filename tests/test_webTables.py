@@ -50,7 +50,7 @@ class TestAbs(unittest.TestCase):
 
             # Заполняем поля
             driver.find_element_by_xpath("//button[@id='addNewRecordButton']").click()
-            driver.find_element_by_xpath("//input[@id='firstName']").send_keys("firstName")
+            driver.find_element_by_xpath("//input[@id='firstName']").send_keys(firstName)
             driver.find_element_by_xpath("//input[@id='lastName']").send_keys(lastName)
             driver.find_element_by_xpath("//input[@id='userEmail']").send_keys(userEmail)
             driver.find_element_by_xpath("//input[@id='age']").send_keys(age)
