@@ -32,15 +32,41 @@ Thread(target=enter_proxy_auth, args=(proxy_username, proxy_password)).start()
 
 try:
     #Задаем значения вводимых строк
-    #Name = 'Andrew'
+    succes_border = 'rgb(40, 167, 69)'
+    firstName = 'Andrew'
+    lastName = 'Ivakha'
+    mobileNumber = '9150944414'
 
-    #Ожидаем появления элементов
+
+    # Ожидаем появления элементов
     driver.implicitly_wait(5)
 
-    #Заполняем поля
-    driver.find_element_by_xpath("//button[@id='submit']").click()
-    element = driver.find_element_by_xpath("//input[@id='firstName']").value_of_css_property('border-corol')
-    print(element)
+
+    #Заполняем inputы
+    driver.find_element_by_xpath("//input[@id='firstName']").send_keys(firstName)
+    driver.find_element_by_xpath("//input[@id='lastName']").send_keys(lastName)
+    driver.find_element_by_xpath("//input[@id='gender-radio-1']/following::label[@class='custom-control-label'][1]").click()
+    driver.find_element_by_xpath("//input[@id='userNumber']").send_keys(mobileNumber)
+
+
+    # Скроллим до кнопки
+    driver.execute_script("window.scrollBy(0, 90);")
+
+
+    # Ищем Submit и нажимаем
+    submit = driver.find_element_by_xpath("//button[@id='submit']")
+    submit.click()
+    time.sleep(2)
+
+
+    #Ищем значения bordеr-color у полей First Name, Last Name и Mobile Number
+    firstName_border = driver.find_element_by_xpath("//input[@id='firstName' and @class=' mr-sm-2 form-control']").value_of_css_property('border-color')
+    #Сравниваем с эталонным значением - с зеленым (переменная succes_border)
+    if firstName_border != succes_border:
+        print("Не заполнены обязательные поля")
+
+    driver.find_element_by_xpath("//button[@id='closeLargeModal']").click()
+    print(firstName_border)
 finally:
     time.sleep(1)
     driver.quit()
