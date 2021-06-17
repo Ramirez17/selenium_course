@@ -40,7 +40,9 @@ class TestAbs(unittest.TestCase):
             #Разворачиваем дерево
             print('Стартуем!')
             time.sleep(3)
-            driver.find_element_by_xpath("//button[@class='rct-collapse rct-collapse-btn']").click()
+            driver.find_element_by_xpath("//button[@class='rct-option rct-option-expand-all']").click()
+            time.sleep(3)
+            driver.find_element_by_xpath("//button[@class='rct-option rct-option-collapse-all']").click()
 
         finally:
             time.sleep(5)
