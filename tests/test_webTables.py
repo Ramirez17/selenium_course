@@ -38,24 +38,24 @@ class TestAbs(unittest.TestCase):
 
         try:
             # Задаем значения вводимых строк
-            firstName = 'Andrew'
-            lastName = 'Ivakha'
-            userEmail = 'test@test.ru'
-            age = '34'
-            Salary = '10000000'
-            department = 'US'
+            a = ['Andrew','Ivakha','test@test.ru','34','10000000','US']
+            # lastName = 'Ivakha'
+            # userEmail = 'test@test.ru'
+            # age = '34'
+            # Salary = '10000000'
+            # department = 'US'
 
             # Ожидаем появления элементов
             driver.implicitly_wait(5)
 
             # Заполняем поля
             driver.find_element_by_xpath("//button[@id='addNewRecordButton']").click()
-            driver.find_element_by_xpath("//input[@id='firstName']").send_keys(firstName)
-            driver.find_element_by_xpath("//input[@id='lastName']").send_keys(lastName)
-            driver.find_element_by_xpath("//input[@id='userEmail']").send_keys(userEmail)
-            driver.find_element_by_xpath("//input[@id='age']").send_keys(age)
-            driver.find_element_by_xpath("//input[@id='salary']").send_keys(Salary)
-            driver.find_element_by_xpath("//input[@id='department']").send_keys(department)
+            driver.find_element_by_xpath("//input[@id='firstName']").send_keys(a[0])
+            driver.find_element_by_xpath("//input[@id='lastName']").send_keys(a[1])
+            driver.find_element_by_xpath("//input[@id='userEmail']").send_keys(a[2])
+            driver.find_element_by_xpath("//input[@id='age']").send_keys(a[3])
+            driver.find_element_by_xpath("//input[@id='salary']").send_keys(a[4])
+            driver.find_element_by_xpath("//input[@id='department']").send_keys(a[5])
             driver.find_element_by_xpath("//button[@id='submit']").click()
             time.sleep(1)
 
@@ -64,8 +64,8 @@ class TestAbs(unittest.TestCase):
                 "//div[@class='rt-tbody']/div[@class='rt-tr-group'][4]//div[@class='rt-td'][1]").text
 
             # Проверяем, что строка присутствует
-            assert firstName_print == firstName, "Отсутствует добавленная строка"
-            if firstName_print == firstName:
+            assert firstName_print == a[0], "Отсутствует добавленная строка"
+            if firstName_print == a[0]:
                 print("Строка добавлена")
         finally:
             time.sleep(1)

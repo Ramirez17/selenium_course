@@ -47,7 +47,7 @@ try:
     print(driver.switch_to.alert.text)
 finally:
     # успеваем скопировать код за 30 секунд
-    time.sleep(10)
+    time.sleep(1)
     # закрываем браузер после всех манипуляций
     driver.quit()
 # не забываем оставить пустую строку в конце файла
