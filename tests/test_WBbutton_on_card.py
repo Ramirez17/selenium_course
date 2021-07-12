@@ -57,8 +57,10 @@ class TestAbs(unittest.TestCase):
 
             # нажать "Добавить в корзину"
             driver.find_element_by_xpath("//div[@class='cart-btn-wrap']//button[@class='c-btn-main-lg-v1']").click()
-            real_text = driver.find_element_by_xpath("//div[@class='cart-btn-wrap']//button[@class='c-btn-main-lg-v1']").text
-            print(real_text)
+
+            # нажать "Перейти в корзину"
+            driver.find_element_by_xpath("//a[@class='c-btn-base-lg-v1 j-go-to-basket']").click()
+
         finally:
             time.sleep(1)
             driver.quit()
