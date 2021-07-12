@@ -54,6 +54,13 @@ class TestAbs(unittest.TestCase):
             time.sleep(3)
             alert2.accept()
 
+            # Button3
+            driver.find_element_by_xpath("//button[@id='confirmButton']").click()
+            alert3 = driver.switch_to.alert
+            alert3.accept()
+            message = driver.find_element_by_xpath("//span[@id='confirmResult']").text
+            assert "You selected Cancel" in message
+
         finally:
             time.sleep(4)
             driver.quit()
