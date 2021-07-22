@@ -38,7 +38,8 @@ class TestAbs(unittest.TestCase):
 
         try:
             # Задаем значения вводимых строк
-            a = ['Andrew','Ivakha','test@test.ru','34','10000000','US']
+            a = ['Andrew', 'Ivakha', 'test@test.ru', '34', '10000000', 'US']
+            b = ['Andrew1', 'Ivakha1', 'test@test.ru1', '341', '100000001', 'US1']
             # lastName = 'Ivakha'
             # userEmail = 'test@test.ru'
             # age = '34'
@@ -49,17 +50,18 @@ class TestAbs(unittest.TestCase):
             driver.implicitly_wait(5)
 
             # Заполняем поля
-            driver.find_element_by_xpath("//button[@id='addNewRecordButton']").click()
-            driver.find_element_by_xpath("//input[@id='firstName']").send_keys(a[0])
-            driver.find_element_by_xpath("//input[@id='lastName']").send_keys(a[1])
-            driver.find_element_by_xpath("//input[@id='userEmail']").send_keys(a[2])
-            driver.find_element_by_xpath("//input[@id='age']").send_keys(a[3])
-            driver.find_element_by_xpath("//input[@id='salary']").send_keys(a[4])
-            driver.find_element_by_xpath("//input[@id='department']").send_keys(a[5])
-            driver.find_element_by_xpath("//button[@id='submit']").click()
-            time.sleep(1)
+            for i in range(2):
+                driver.find_element_by_xpath("//button[@id='addNewRecordButton']").click()
+                driver.find_element_by_xpath("//input[@id='firstName']").send_keys(a[0])
+                driver.find_element_by_xpath("//input[@id='lastName']").send_keys(a[1])
+                driver.find_element_by_xpath("//input[@id='userEmail']").send_keys(a[2])
+                driver.find_element_by_xpath("//input[@id='age']").send_keys(a[3])
+                driver.find_element_by_xpath("//input[@id='salary']").send_keys(a[4])
+                driver.find_element_by_xpath("//input[@id='department']").send_keys(a[5])
+                driver.find_element_by_xpath("//button[@id='submit']").click()
 
-            # Находим ячейку с именем в добавленной нами строке
+
+                # Находим ячейку с именем в добавленной нами строке
             firstName_print = driver.find_element_by_xpath(
                 "//div[@class='rt-tbody']/div[@class='rt-tr-group'][4]//div[@class='rt-td'][1]").text
 
