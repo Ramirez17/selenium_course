@@ -17,8 +17,8 @@ class TestAbs(unittest.TestCase):
 
         try:
             login = 'admin'  # логин
-            password = '222'  # пароль
-            expected_message = 'Неверный логин или пароль.'
+            password = '222'  # заведомо неверный пароль
+            expected_message = 'Неверный логин или пароль.'  # Ожидаемое сообщение об ошибке
             driver.implicitly_wait(5)
             driver.find_element_by_xpath("//*[@id='storage']").click()  # кликаем на dropdown для выбора хранилища
             driver.find_element_by_xpath("//*[@id='pr_id_2_list']/p-dropdownitem/li").click()  # кликаем на хранилище
@@ -26,15 +26,10 @@ class TestAbs(unittest.TestCase):
             driver.find_element_by_xpath("//*[@id='password']/div/input").send_keys(password)  # вводим пароль в поле
             driver.find_element_by_xpath("//button[@class='p-ripple p-element login-btn p-button p-component']").click()  # кликаем на кнопку Подключиться
             time.sleep(1)
-            #real_message = driver.find_element_by_xpath("//div[@class='message-panel']/p-toast/div/p-toastitem/div/div/div/div[2]").text()
-            real1 = driver.find_element_by_xpath("//div[@class='message-panel']/p-toast/div/p-toastitem/div/div/div/div[2]")
-            real2 = driver.find_elements_by_xpath("//div[contains(text(), 'Неверный логин или пароль')]")
-            assert False == real1, '111'
+            real_message = driver.find_element_by_xpath("//div[@class='message-panel']/p-toast/div/p-toastitem/div/div/div/div[2]").get_attribute("innerHTML")  # получаем текст всплывающего сообщения
+            assert expected_message == real_message, 'Нет ожидаемого сообщения.'  # Проверяем соответствие ожидаемого сообщения полученному
 
-            # проверка ожидаемого сообщения
-            print('1 = ', real1, '2 = ', real2)
         finally:
-            #time.sleep(1)
             driver.quit()
 
 
