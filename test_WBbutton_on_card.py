@@ -44,7 +44,8 @@ class TestAbs(unittest.TestCase):
             driver.find_element_by_xpath("//div[@class='country__item']/label[2]/span[2]").click()
             driver.find_element_by_xpath("//input[@class='search-catalog__input j-search-input']").send_keys('стакан')
             time.sleep(2)
-            driver.find_element_by_xpath("//div[@class='autocomplete__content']/div[2]/div[@class='autocomplete__item j-suggestion']").click()
+            driver.find_element_by_xpath(
+                "//div[@class='autocomplete__content']/div[2]/div[@class='autocomplete__item j-suggestion']").click()
 
             # ищем кнопку "Быстрый просмотр"
             print('Наводимся')
@@ -52,7 +53,8 @@ class TestAbs(unittest.TestCase):
             print('нашел карточку для наведения')
             hover = ActionChains(driver).move_to_element(hover_block)
             hover.perform()
-            hide_button = driver.find_element_by_xpath("//div[@id='catalog-content']//div[@id='c15149740'][1]//button[@class='quick-view j-open-product-popup'][1]")
+            hide_button = driver.find_element_by_xpath(
+                "//div[@id='catalog-content']//div[@id='c15149740'][1]//button[@class='quick-view j-open-product-popup'][1]")
             hide_button.click()
 
             # нажать "Добавить в корзину"
@@ -68,3 +70,4 @@ class TestAbs(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

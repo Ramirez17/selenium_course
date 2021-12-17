@@ -11,7 +11,6 @@ import unittest
 
 
 class TestAbs(unittest.TestCase):
-    # 1 тест
     def test_page1(self):
         hostname = "10.3.1.2"
         port = "8080"
@@ -73,6 +72,7 @@ class TestAbs(unittest.TestCase):
         finally:
             time.sleep(1)
             driver.quit()
+
 
 if __name__ == "__main__":
     unittest.main()

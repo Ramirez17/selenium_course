@@ -33,33 +33,13 @@ class TestAbs(unittest.TestCase):
         def open_a_page(driver, url):
             driver.get(url)
 
-        Thread(target=open_a_page, args=(driver, "http://uitestingplayground.com/dynamicid")).start()
+        Thread(target=open_a_page, args=(driver, "http://uitestingplayground.com/")).start()
         Thread(target=enter_proxy_auth, args=(proxy_username, proxy_password)).start()
 
         try:
             driver.implicitly_wait(5)
-
-            # Button1
-            driver.find_element_by_xpath("//button[@id='alertButton']").click()
-            alert1 = driver.switch_to.alert
-            text1 = alert1.text
-            print(text1)
-            alert1.accept()
-
-            # Button2
-            driver.find_element_by_xpath("//button[@id='timerAlertButton']").click()
-            wait = WebDriverWait(driver, 10)
-            wait.until(EC.alert_is_present())
-            alert2 = driver.switch_to.alert
-            time.sleep(3)
-            alert2.accept()
-
-            # Button3
-            driver.find_element_by_xpath("//button[@id='confirmButton']").click()
-            alert3 = driver.switch_to.alert
-            alert3.accept()
-            message = driver.find_element_by_xpath("//span[@id='confirmResult']").text
-            assert "You selected Cancel" in message
+            driver.find_element_by_xpath("//div[@class='row'][1]//div[@class='col-sm'][4]//a").click()
+            driver.find_element_by_xpath("//button[@class='btn btn-primary']").click()
 
         finally:
             time.sleep(4)
